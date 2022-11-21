@@ -12,11 +12,11 @@ type ApiResponse = {
   };
 };
 
-const Home: NextPage<ApiResponse> = ({ data }) => {
+const Home: NextPage<ApiResponse> = ({ data, meta }) => {
   // TODO: add pagination/infinite scroll
   return (
     <div className="max-w-5xl mx-auto my-0">
-      {data.length > 0 && <JobList initialJobs={data} />}
+      {data.length > 0 && <JobList initialJobs={data} initialMeta={meta} />}
     </div>
   );
 };
