@@ -14,7 +14,7 @@ const JobCard = (props: Job) => {
     <a href={url} target="_blank">
       <div
         className="flex 
-      flex-row hover:cursor-pointer mx-4 my-8 p-2 
+      flex-row hover:cursor-pointer my-8 p-2 
       justify-between rounded shadow-md hover:shadow-xl 
       bg-gray-400 transition duration-400
       hover:bg-gray-300"
