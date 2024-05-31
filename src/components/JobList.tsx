@@ -1,4 +1,5 @@
-import JobCard, { Job } from "./JobCard";
+import { Job } from "../utils/types";
+import JobCard from "./JobCard";
 
 type Props = {
   jobs: Job[];

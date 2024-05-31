@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { SearchOptions } from "./AppState";
+import { SearchOptions } from "../utils/types";
 
 type SearchProps = {
   searchOptions: SearchOptions;

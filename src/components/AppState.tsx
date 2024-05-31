@@ -31,7 +31,7 @@ const AppState = () => {
       const body = await fetch(url);
 
       const json = await body.json();
-      console.log('api response', json)
+      console.log("api response", json);
 
       // If scrolling to another page, concat the data instead of replacing it
       if (page) {
@@ -69,7 +69,7 @@ const AppState = () => {
         });
       }
     },
-    [meta?.currentPage, meta?.totalPages, setJobs, setMeta],
+    [debouncedSearchOptions, fetchJobs, meta?.currentPage, meta?.totalPages],
   );
 
   // Setup intersection observer
@@ -87,7 +87,7 @@ const AppState = () => {
   // Handle search logic whenever searchOptions changes
   useEffect(() => {
     fetchJobs({ ...debouncedSearchOptions });
-  }, [debouncedSearchOptions]);
+  }, [debouncedSearchOptions, fetchJobs]);
 
   return (
     <div className="max-w-5xl mx-auto my-0">
@@ -97,9 +97,7 @@ const AppState = () => {
       />
       {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
       {jobs && jobs.length > 0 && <div id="observer" ref={observerRef}></div>}
-      {!jobs && 
-        <h3>No Jobs Found</h3>
-      }
+      {!jobs && <h3>No Jobs Found</h3>}
     </div>
   );
 };
