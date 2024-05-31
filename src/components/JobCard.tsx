@@ -1,11 +1,4 @@
-export type Job = {
-  title: string;
-  company: string;
-  url: string;
-  location?: string;
-  description: string;
-  createdAt: string;
-};
+import { Job } from "../utils/types";
 
 const JobCard = (props: Job) => {
   const { title, company, description, location, url, createdAt } = props;

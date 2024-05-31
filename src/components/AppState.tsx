@@ -1,18 +1,13 @@
 import { useRef, useCallback, useEffect, useState } from "react";
-import { ApiResponse } from "../pages";
+import { ApiResponse, SearchOptions } from "../utils/types";
 import { useDebounce } from "../utils/hooks";
 import JobList from "./JobList";
 import SearchBar from "./Searchbar";
 
-export type SearchOptions = {
-  title?: string;
-  company?: string;
-};
-
 // Component to manage state of the app
-const AppState = ({ data: initialJobs, meta: initialMeta }: ApiResponse) => {
-  const [jobs, setJobs] = useState<ApiResponse["data"]>(initialJobs);
-  const [meta, setMeta] = useState<ApiResponse["meta"]>(initialMeta);
+const AppState = () => {
+  const [jobs, setJobs] = useState<ApiResponse["data"]>([]);
+  const [meta, setMeta] = useState<ApiResponse["meta"]>({});
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
 
   // Debounce the user input for search, to reduce api calls
@@ -36,16 +31,17 @@ const AppState = ({ data: initialJobs, meta: initialMeta }: ApiResponse) => {
       const body = await fetch(url);
 
       const json = await body.json();
+      console.log('api response', json)
 
       // If scrolling to another page, concat the data instead of replacing it
       if (page) {
-        setJobs((prev) => prev.concat(json.data));
+        setJobs((prev) => prev.concat(json.data.data));
       } else {
-        setJobs(json.data);
+        setJobs(json.data.data);
       }
-      setMeta(json.meta);
+      setMeta(json.data.meta);
     },
-    [setJobs, setMeta]
+    [setJobs, setMeta],
   );
 
   // Ref for intersection observer div
@@ -55,7 +51,12 @@ const AppState = ({ data: initialJobs, meta: initialMeta }: ApiResponse) => {
   const handleObserver = useCallback<IntersectionObserverCallback>(
     async (entries) => {
       const [target] = entries;
-      if (target.isIntersecting && meta.currentPage < meta.totalPages) {
+      if (
+        target.isIntersecting &&
+        meta.currentPage &&
+        meta.totalPages &&
+        meta.currentPage < meta.totalPages
+      ) {
         // TODO: move data fetching to SWR
         // const res = await fetch(`/api/jobs?page=${meta.currentPage + 1}`);
         // const body = await res.json();
@@ -68,7 +69,7 @@ const AppState = ({ data: initialJobs, meta: initialMeta }: ApiResponse) => {
         });
       }
     },
-    [meta.currentPage, meta.totalPages, setJobs, setMeta]
+    [meta?.currentPage, meta?.totalPages, setJobs, setMeta],
   );
 
   // Setup intersection observer
@@ -94,8 +95,11 @@ const AppState = ({ data: initialJobs, meta: initialMeta }: ApiResponse) => {
         searchOptions={searchOptions}
         setSearchOptions={setSearchOptions}
       />
-      {jobs.length > 0 && <JobList jobs={jobs} />}
-      {jobs.length > 0 && <div id="observer" ref={observerRef}></div>}
+      {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
+      {jobs && jobs.length > 0 && <div id="observer" ref={observerRef}></div>}
+      {!jobs && 
+        <h3>No Jobs Found</h3>
+      }
     </div>
   );
 };
