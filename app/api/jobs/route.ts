@@ -4,7 +4,11 @@ export async function GET(request: NextRequest) {
   let url = `${process.env.NEXT_PUBLIC_API_URL!}/jobs${request.nextUrl.search}`
 
   console.log('fetching from url', url)
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    next: {
+      revalidate: 1800
+    }
+  });
 
   if (response.ok) {
     const json = await response.json();
