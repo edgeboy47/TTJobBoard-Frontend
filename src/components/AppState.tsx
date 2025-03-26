@@ -31,7 +31,6 @@ const AppState = () => {
       const body = await fetch(url);
 
       const json = await body.json();
-      console.log("api response", json);
 
       // If scrolling to another page, concat the data instead of replacing it
       if (page) {

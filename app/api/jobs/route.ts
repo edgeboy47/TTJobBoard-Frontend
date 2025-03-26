@@ -5,9 +5,7 @@ export async function GET(request: NextRequest) {
 
   console.log('fetching from url', url)
   const response = await fetch(url, {
-    next: {
-      revalidate: 1800
-    }
+    cache: 'no-store'
   });
 
   if (response.ok) {
