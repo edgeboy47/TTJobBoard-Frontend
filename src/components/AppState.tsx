@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect, useState } from "react";
+import React, { useRef, useCallback, useEffect, useState } from "react";
 import { ApiResponse, SearchOptions } from "../utils/types";
 import { useDebounce } from "../utils/hooks";
 import JobList from "./JobList";

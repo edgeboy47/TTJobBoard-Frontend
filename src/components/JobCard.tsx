@@ -1,10 +1,11 @@
+import React from 'react'
 import { Job } from "../utils/types";
 
 const JobCard = (props: Job) => {
   const { title, company, description, location, url, createdAt } = props;
   const date = new Date(createdAt);
   return (
-    <a href={url} target="_blank">
+    <a href={url} target="_blank" rel="noreferrer">
       <div
         className="flex 
       flex-row hover:cursor-pointer my-8 p-2 
@@ -18,9 +19,8 @@ const JobCard = (props: Job) => {
           <p className="max-w-prose">{description}</p>
         </div>
         <div className="flex justify-end flex-col gap-2 items-end">
-          <p>{`${date.getDate()}-${
-            date.getMonth() + 1
-          }-${date.getFullYear()}`}</p>
+          <p>{`${date.getDate()}-${date.getMonth() + 1
+            }-${date.getFullYear()}`}</p>
           <p>{location || ""}</p>
         </div>
       </div>

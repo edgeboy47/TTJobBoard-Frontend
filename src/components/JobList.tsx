@@ -1,3 +1,4 @@
+import React from 'react'
 import { Job } from "../utils/types";
 import JobCard from "./JobCard";
 

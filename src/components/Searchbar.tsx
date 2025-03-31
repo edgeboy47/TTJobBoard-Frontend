@@ -1,3 +1,4 @@
+import React from 'react'
 import { SearchOptions } from "../utils/types";
 
 type SearchProps = {
