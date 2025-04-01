@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from "../src/components/Header";
-import '../styles/globals.css'
+import "../src/app/globals.css"
 
 export default function RootLayout({
   // Layouts must accept a children prop.

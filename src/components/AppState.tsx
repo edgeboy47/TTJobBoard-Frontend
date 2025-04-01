@@ -1,12 +1,12 @@
 import React, { useRef, useCallback, useEffect, useState } from "react";
-import { ApiResponse, SearchOptions } from "../utils/types";
+import { ApiResponse, Job, SearchOptions } from "../utils/types";
 import { useDebounce } from "../utils/hooks";
 import JobList from "./JobList";
 import SearchBar from "./Searchbar";
 
 // Component to manage state of the app
 const AppState = () => {
-  const [jobs, setJobs] = useState<ApiResponse["data"]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [meta, setMeta] = useState<ApiResponse["meta"]>({});
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
 
