@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
   const url = `${process.env.NEXT_PUBLIC_API_URL! + '/jobs?' + params}`
@@ -17,7 +18,13 @@ export async function GET(request: NextRequest) {
       meta: json.meta,
     };
 
-    return Response.json({ data }, { status: 200 });
+    return Response.json({ data }, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache',
+      }
+    });
   }
 
   const data = {
