@@ -1,31 +1,77 @@
 import React from 'react'
 import { Job } from "../utils/types";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import {
+  Button
+} from "@/components/ui/button"
+import { MapPin, Paperclip } from 'lucide-react';
 
 const JobCard = (props: Job) => {
-  const { title, company, description, location, url, createdAt } = props;
+  const { img, title, company, description, location, url, createdAt } = props;
   const date = new Date(createdAt);
+  const companyInitials = company.split(' ').slice(0, 2).map(a => a[0]).join('').toUpperCase()
+  const dateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+  const applyNow = 'Apply Now'
+
   return (
-    <a href={url} target="_blank" rel="noreferrer">
-      <div
-        className="flex 
-      flex-row hover:cursor-pointer my-8 p-2 
-      justify-between rounded shadow-md hover:shadow-xl 
-      bg-gray-400 transition duration-400
-      hover:bg-gray-300"
-      >
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-medium">{title}</h2>
-          <h5 className="text-sm font-medium ">{company}</h5>
-          <p className="max-w-prose">{description}</p>
+    <Card className="flex flex-col md:flex-row max-w-[960px]">
+      <CardHeader className='mr-4'>
+        {
+          img ?
+            <img src={img} alt={`${company} Logo`} className='min-w-16 min-h-16 max-w-16 max-h-16 rounded-md border-gray-300 border-2 object-contain' /> :
+            <h2 className='text-2xl md:text-3xl font-medium rounded-md bg-gray-300 min-w-16 min-h-16 max-w-16 max-h-16 text-center content-center'>{companyInitials}</h2>
+        }
+      </CardHeader>
+      <CardContent className='flex-1'>
+        <CardTitle className='flex flex-col sm:flex-row justify-between mb-2'>
+          <a
+            href={url}
+          >
+            <h2 className="text-xl font-semibold">{title}</h2>
+          </a>
+          <p className='text-sm text-gray-500 mt-1 sm:mt-0'>{dateString}</p>
+        </CardTitle>
+        <div className='flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1 mb-4'>
+          <p className="font-medium text-gray-700">{company}</p>
+          {
+            location && (
+              <>
+                <span className="hidden sm:inline text-gray-300">•</span>
+                <p className='flex items-center gap-1 text-gray-500'>
+                  <MapPin size={16} className='opacity-70' />
+                  {location}
+                </p>
+              </>
+            )
+          }
         </div>
-        <div className="flex justify-end flex-col gap-2 items-end">
-          <p>{`${date.getDate()}-${date.getMonth() + 1
-            }-${date.getFullYear()}`}</p>
-          <p>{location || ""}</p>
-        </div>
-      </div>
-    </a>
-  );
-};
+        <CardDescription className='mb-4'>
+          <p className="max-w-prose line-clamp-2 text-sm leading-relaxed text-gray-700">{description}</p>
+        </CardDescription>
+        <CardFooter className='px-0'>
+          <Button
+            asChild
+            className='w-full sm:w-auto bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm flex items-center justify-center'
+          >
+            <a
+              href={url}
+            >
+              <Paperclip size={16} />
+              {applyNow}
+            </a>
+          </Button>
+        </CardFooter>
+      </CardContent>
+    </Card>
+  )
+}
 
 export default JobCard;

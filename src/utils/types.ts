@@ -1,22 +1,23 @@
 export type Job = {
-  title: string;
-  company: string;
-  url: string;
-  location?: string;
-  description: string;
-  createdAt: string;
-};
+  title: string
+  company: string
+  url: string
+  location?: string
+  description: string
+  createdAt: string
+  img?: string
+}
 
 export type ApiResponse = {
-  data: Job[];
+  data: Job[]
   meta: {
-    currentPage?: number;
-    totalPages?: number;
-    totalItems?: number;
-  };
-};
+    currentPage?: number
+    totalPages?: number
+    totalItems?: number
+  }
+}
 
 export type SearchOptions = {
-  title?: string;
-  company?: string;
-};
+  title?: string
+  company?: string
+}
