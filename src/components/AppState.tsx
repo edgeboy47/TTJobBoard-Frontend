@@ -89,13 +89,13 @@ const AppState = () => {
   }, [debouncedSearchOptions, fetchJobs]);
 
   return (
-    <div className="max-w-5xl mx-auto my-0">
+    <div className="max-w-5xl mx-auto my-0 px-4 md:px-8">
       <SearchBar
         searchOptions={searchOptions}
         setSearchOptions={setSearchOptions}
       />
       {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
-      {jobs && jobs.length > 0 && <div id="observer" ref={observerRef}></div>}
+      {jobs && jobs.length > 0 && <div className="h-20" id="observer" ref={observerRef}></div>}
       {!jobs && <h3>No Jobs Found</h3>}
     </div>
   );
