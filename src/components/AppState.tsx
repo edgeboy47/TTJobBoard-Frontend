@@ -3,12 +3,14 @@ import { ApiResponse, Job, SearchOptions } from "../utils/types";
 import { useDebounce } from "../utils/hooks";
 import JobList from "./JobList";
 import SearchBar from "./Searchbar";
+import { Spinner } from "./ui/spinner";
 
 // Component to manage state of the app
 const AppState = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [meta, setMeta] = useState<ApiResponse["meta"]>({});
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
+  const [loading, setLoading] = useState<boolean>(false)
 
   // Debounce the user input for search, to reduce api calls
   const debouncedSearchOptions = useDebounce<SearchOptions>(searchOptions);
@@ -17,6 +19,7 @@ const AppState = () => {
   // Data fetching logic
   const fetchJobs = useCallback(
     async ({ page, title, company }: SearchOptions & { page?: number }) => {
+      setLoading(true)
       const params = new URLSearchParams();
       let url: string;
 
@@ -39,6 +42,7 @@ const AppState = () => {
         setJobs(json.data.data);
       }
       setMeta(json.data.meta);
+      setLoading(false)
     },
     [setJobs, setMeta],
   );
@@ -95,6 +99,11 @@ const AppState = () => {
         setSearchOptions={setSearchOptions}
       />
       {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
+      {loading && (
+        <div className="w-full flex justify-center text-gray-700">
+          <Spinner className="size-10" />
+        </div>
+      )}
       {jobs && jobs.length > 0 && <div className="h-20" id="observer" ref={observerRef}></div>}
       {!jobs && <h3>No Jobs Found</h3>}
     </div>
