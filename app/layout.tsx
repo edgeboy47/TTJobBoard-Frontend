@@ -6,7 +6,9 @@ import Header from "../src/components/Header";
 import "../src/app/globals.css"
 import { SEO } from '../src/constants';
 
-const inter = Inter()
+const inter = Inter({
+  preload: false
+})
 
 export const metadata: Metadata = {
   title: SEO.title,
