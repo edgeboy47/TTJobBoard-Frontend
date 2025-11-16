@@ -2,8 +2,10 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <header className="flex justify-between p-6 text-5xl font-medium bg-gray-700 text-gray-100 px-24">
-      <h1>TT Job Board</h1>
+    <header className="w-full bg-gray-50 rounded-md shadow flex justify-center">
+      <div className='p-6 max-w-5xl w-full'>
+        <h1 className='text-5xl font-medium'>TT Job Board</h1>
+      </div>
     </header>
   );
 };

@@ -29,12 +29,12 @@ export default function RootLayout({
   return (
     <html className="min-h-screen flex" lang="en">
       <body className="flex-1 flex">
-        <div className="flex flex-col flex-1">
+        <main className="flex flex-col flex-1 bg-gray-200 ">
           <Header />
-          <main className="bg-gray-200 flex-1">
+          <section className="flex-1">
             {children}
-          </main>
-        </div>
+          </section>
+        </main>
       </body>
     </html>
   );
