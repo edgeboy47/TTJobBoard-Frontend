@@ -1,9 +1,12 @@
 import React from 'react'
 import { Metadata } from 'next';
+import { Inter } from 'next/font/google'
 
 import Header from "../src/components/Header";
 import "../src/app/globals.css"
 import { SEO } from '../src/constants';
+
+const inter = Inter()
 
 export const metadata: Metadata = {
   title: SEO.title,
@@ -27,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="min-h-screen flex" lang="en">
+    <html className={`min-h-screen flex ${inter.className}`} lang="en">
       <body className="flex-1 flex">
         <main className="flex flex-col flex-1 bg-gray-200 ">
           <Header />
