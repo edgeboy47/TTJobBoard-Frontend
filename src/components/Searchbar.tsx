@@ -1,5 +1,7 @@
 import React from 'react'
 import { SearchOptions } from "../utils/types";
+import { Label } from './ui/label';
+import { Input } from './ui/input';
 
 type SearchProps = {
   searchOptions: SearchOptions;
@@ -10,37 +12,41 @@ type SearchProps = {
 const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
   const { title, company } = searchOptions;
   return (
-    <div className="my-6">
-      <label htmlFor="title">Title</label>
-      <input
-        className="mx-3 px-2 py-1 rounded outline-none shadow"
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Title"
-        value={title ?? ""}
-        onChange={(e) =>
-          setSearchOptions((prevOptions) => ({
-            ...prevOptions,
-            title: e.target.value,
-          }))
-        }
-      />
-      <label htmlFor="company">Company</label>
-      <input
-        className="mx-3 px-2 py-1 rounded outline-none shadow"
-        type="text"
-        name="company"
-        id="company"
-        placeholder="Company"
-        value={company ?? ""}
-        onChange={(e) =>
-          setSearchOptions((prevOptions) => ({
-            ...prevOptions,
-            company: e.target.value,
-          }))
-        }
-      />
+    <div className="my-6 flex flex-wrap flex-col md:flex-row gap-6">
+      <div className='flex flex-col gap-3 flex-1'>
+        <Label htmlFor="title">Title</Label>
+        <Input
+          className="px-2 py-1 rounded outline-none shadow"
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          value={title ?? ""}
+          onChange={(e) =>
+            setSearchOptions((prevOptions) => ({
+              ...prevOptions,
+              title: e.target.value,
+            }))
+          }
+        />
+      </div>
+      <div className='flex flex-col gap-3 flex-1'>
+        <Label htmlFor="company">Company</Label>
+        <Input
+          className="px-2 py-1 rounded outline-none shadow"
+          type="text"
+          name="company"
+          id="company"
+          placeholder="Company"
+          value={company ?? ""}
+          onChange={(e) =>
+            setSearchOptions((prevOptions) => ({
+              ...prevOptions,
+              company: e.target.value,
+            }))
+          }
+        />
+      </div>
     </div>
   );
 };
