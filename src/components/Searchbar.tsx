@@ -12,11 +12,11 @@ type SearchProps = {
 const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
   const { title, company } = searchOptions;
   return (
-    <div className="my-6 flex flex-wrap flex-col md:flex-row gap-6">
+    <div className="bg-white rounded-md p-8 shadow-md my-6 flex flex-wrap flex-col md:flex-row gap-6">
       <div className='flex flex-col gap-3 flex-1'>
         <Label htmlFor="title">Title</Label>
         <Input
-          className="px-2 py-1 rounded outline-none shadow"
+          className="py-2 rounded-md outline-none shadow"
           type="text"
           name="title"
           id="title"
@@ -33,7 +33,7 @@ const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
       <div className='flex flex-col gap-3 flex-1'>
         <Label htmlFor="company">Company</Label>
         <Input
-          className="px-2 py-1 rounded outline-none shadow"
+          className="px-2 py-1 rounded-md outline-none shadow"
           type="text"
           name="company"
           id="company"

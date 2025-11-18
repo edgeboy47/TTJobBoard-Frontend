@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html className={`min-h-screen flex ${inter.className}`} lang="en">
       <body className="flex-1 flex">
-        <main className="flex flex-col flex-1 bg-gray-200 ">
+        <main className="flex flex-col flex-1 bg-slate-100 ">
           <Header />
           <section className="flex-1">
             {children}
