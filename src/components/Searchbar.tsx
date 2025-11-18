@@ -2,6 +2,7 @@ import React from 'react'
 import { SearchOptions } from "../utils/types";
 import { Label } from './ui/label';
 import { Input } from './ui/input';
+import { SearchIcon } from 'lucide-react';
 
 type SearchProps = {
   searchOptions: SearchOptions;
@@ -16,11 +17,12 @@ const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
       <div className='flex flex-col gap-3 flex-1'>
         <Label htmlFor="title">Title</Label>
         <Input
+          icon={<SearchIcon size={16} className='opacity-50' />}
           className="py-2 rounded-md outline-none shadow"
           type="text"
           name="title"
           id="title"
-          placeholder="Title"
+          placeholder="Job Title"
           value={title ?? ""}
           onChange={(e) =>
             setSearchOptions((prevOptions) => ({
@@ -33,7 +35,8 @@ const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
       <div className='flex flex-col gap-3 flex-1'>
         <Label htmlFor="company">Company</Label>
         <Input
-          className="px-2 py-1 rounded-md outline-none shadow"
+          icon={<SearchIcon size={16} className='opacity-50' />}
+          className="py-1 rounded-md outline-none shadow"
           type="text"
           name="company"
           id="company"
