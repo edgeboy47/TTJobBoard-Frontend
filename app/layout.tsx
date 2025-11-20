@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`min-h-screen flex ${inter.className}`} lang="en">
+    <html className={`min-h-screen flex overflow-y-scroll ${inter.className}`} lang="en">
       <body className="flex-1 flex">
         <main className="flex flex-col flex-1 bg-slate-100 ">
           <Header />

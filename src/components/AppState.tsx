@@ -55,6 +55,7 @@ const AppState = () => {
     async (entries) => {
       const [target] = entries;
       if (
+        !loading &&
         target.isIntersecting &&
         meta.currentPage &&
         meta.totalPages &&
