@@ -73,7 +73,7 @@ const AppState = () => {
         });
       }
     },
-    [debouncedSearchOptions, fetchJobs, meta?.currentPage, meta?.totalPages],
+    [debouncedSearchOptions, fetchJobs, meta?.currentPage, meta?.totalPages, loading],
   );
 
   // Setup intersection observer

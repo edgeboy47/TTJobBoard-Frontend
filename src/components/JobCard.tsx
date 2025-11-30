@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'motion/react'
 import { Job } from "../utils/types";
 import {
   Card,
@@ -70,12 +71,13 @@ const JobCard = (props: Job) => {
             asChild
             className='w-full sm:w-auto bg-red-700 hover:bg-red-800 focus-within:bg-red-800 duration-200 ease-in-out text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm flex items-center justify-center'
           >
-            <a
+            <motion.a
               href={url}
+              whileTap={{ scale: 0.95 }}
             >
               <Paperclip size={16} />
               {applyNow}
-            </a>
+            </motion.a>
           </Button>
         </CardFooter>
       </CardContent>
