@@ -10,7 +10,7 @@ const AppState = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [meta, setMeta] = useState<ApiResponse["meta"]>({});
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   // Debounce the user input for search, to reduce api calls
   const debouncedSearchOptions = useDebounce<SearchOptions>(searchOptions);
@@ -106,7 +106,11 @@ const AppState = () => {
         </div>
       )}
       {jobs && jobs.length > 0 && <div className="h-20" id="observer" ref={observerRef}></div>}
-      {!jobs && <h3>No Jobs Found</h3>}
+      {!loading && jobs.length === 0 && (
+        <div className="w-full text-center">
+          <h3>No Jobs Found</h3>
+        </div>
+      )}
     </div>
   );
 };
