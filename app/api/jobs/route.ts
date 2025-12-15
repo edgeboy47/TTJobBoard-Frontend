@@ -7,7 +7,10 @@ export async function GET(request: NextRequest) {
 
   console.log('fetching from url', url)
   const response = await fetch(url, {
-    cache: 'no-store'
+    cache: 'no-store',
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_API_KEY!,
+    }
   });
 
   if (response.ok) {
@@ -32,5 +35,5 @@ export async function GET(request: NextRequest) {
     meta: {},
   };
 
-  return Response.json({ data }, { status: 200 });
+  return Response.json({ data }, { status: response.status });
 }
