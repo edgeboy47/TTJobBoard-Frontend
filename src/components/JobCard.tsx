@@ -23,7 +23,7 @@ const JobCard = (props: Job) => {
   const applyNow = 'Apply Now'
 
   return (
-    <Card className="flex flex-col md:flex-row max-w-[960px] focus-within:-translate-y-2 hover:-translate-y-2 transition-transform duration-250 ease-in-out my-4 shadow rounded-md">
+    <Card className="flex flex-col md:flex-row max-w-[960px] focus-within:-translate-y-2 hover:-translate-y-2 transition-transform duration-250 ease-in-out my-6 shadow rounded-md">
       <CardHeader className='mr-4'>
         {
           img ?

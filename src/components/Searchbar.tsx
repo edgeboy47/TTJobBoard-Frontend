@@ -5,21 +5,26 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Card, CardContent } from './ui/card';
 import { SearchIcon } from 'lucide-react';
+import { Spinner } from './ui/spinner';
 
 type SearchProps = {
   searchOptions: SearchOptions;
   setSearchOptions: React.Dispatch<React.SetStateAction<SearchOptions>>;
+  searching: boolean
 };
 
 // Component that allows user to update the state used for search
-const SearchBar = ({ searchOptions, setSearchOptions }: SearchProps) => {
+const SearchBar = ({ searchOptions, setSearchOptions, searching }: SearchProps) => {
   const { title, company } = searchOptions;
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <Card className="bg-white rounded-md p-8 shadow-md my-6">
+      <Card className="bg-white relative rounded-md p-8 shadow-md my-6">
+        {searching &&
+          <Spinner className='size-4 absolute right-4 top-4' />
+        }
         <CardContent className="px-0 flex flex-col flex-wrap md:flex-row gap-6">
           <div className='flex flex-col gap-3 flex-1'>
             <Label htmlFor="title">Title</Label>

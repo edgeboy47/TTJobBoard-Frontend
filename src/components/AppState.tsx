@@ -98,6 +98,7 @@ const AppState = () => {
       <SearchBar
         searchOptions={searchOptions}
         setSearchOptions={setSearchOptions}
+        searching={loading && Object.values(debouncedSearchOptions).length > 0}
       />
       {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
       {loading && (
