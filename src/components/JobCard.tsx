@@ -23,13 +23,13 @@ const JobCard = (props: Job) => {
   const applyNow = 'Apply Now'
 
   return (
-    <Card className="flex flex-col md:flex-row max-w-[960px] focus-within:-translate-y-2 hover:-translate-y-2 transition-transform duration-250 ease-in-out my-6 shadow rounded-md">
+    <Card className="flex flex-col md:flex-row max-w-[960px] focus-within:-translate-y-2 hover:-translate-y-2 transition-all duration-250 ease-in-out my-6 shadow rounded-md">
       <CardHeader className='mr-4'>
         {
           img ?
-            <img src={img} alt={`${company} Logo`} className='min-w-16 min-h-16 max-w-16 max-h-16 rounded-md border-slate-300 border-2 object-contain' /> :
+            <img src={img} alt={`${company} Logo`} className='min-w-16 min-h-16 max-w-16 max-h-16 rounded-md border-slate-300 dark:border-slate-600 border-2 object-contain' /> :
             company ?
-              <h2 className='text-2xl md:text-3xl font-medium rounded-md bg-slate-300 min-w-16 min-h-16 max-w-16 max-h-16 text-center content-center'>{companyInitials}</h2> :
+              <h2 className='text-2xl md:text-3xl font-medium rounded-md bg-slate-300 dark:bg-gray-600 min-w-16 min-h-16 max-w-16 max-h-16 text-center content-center text-gray-900 dark:text-white'>{companyInitials}</h2> :
               null
         }
       </CardHeader>
@@ -37,25 +37,25 @@ const JobCard = (props: Job) => {
         <CardTitle className='flex flex-col sm:flex-row justify-between mb-2'>
           <a
             href={url}
-            className='hover:text-red-700 focus-within:text-red-700 transition-colors duration-200 ease-in-out'
+            className='hover:text-red-700 dark:hover:text-red-500 focus-within:text-red-700 dark:focus-within:text-red-500 transition-colors duration-200 ease-in-out'
           >
-            <h2 className="text-xl font-semibold max-w-[55ch]">{title}</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 max-w-[55ch]">{title}</h2>
           </a>
-          <p className='text-sm text-gray-500 mt-1 sm:mt-0'>{dateString}</p>
+          <p className='text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0'>{dateString}</p>
         </CardTitle>
         <div className='flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1 mb-4'>
           {
             company &&
-            <p className="font-medium text-gray-700">{company}</p>
+            <p className="font-medium text-gray-700 dark:text-gray-300">{company}</p>
           }
           {
             location && company &&
-            <span className="hidden sm:inline text-gray-300">•</span>
+            <span className="hidden sm:inline text-gray-300 dark:text-gray-400">•</span>
           }
           {
             location && (
               <>
-                <p className='flex items-center gap-1 text-gray-500'>
+                <p className='flex items-center gap-1 text-gray-500 dark:text-gray-400'>
                   <MapPin size={16} className='opacity-70' />
                   {location}
                 </p>
@@ -64,7 +64,7 @@ const JobCard = (props: Job) => {
           }
         </div>
         <CardDescription className='mb-4'>
-          <p className="max-w-prose line-clamp-2 text-sm leading-relaxed text-gray-700">{description}</p>
+          <p className="max-w-prose line-clamp-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">{description}</p>
         </CardDescription>
         <CardFooter className='px-0'>
           <Button

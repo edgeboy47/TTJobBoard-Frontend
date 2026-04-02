@@ -102,14 +102,14 @@ const AppState = () => {
       />
       {jobs && jobs.length > 0 && <JobList jobs={jobs} />}
       {loading && (
-        <div className="w-full flex justify-center text-gray-700">
+        <div className="w-full flex justify-center text-gray-700 dark:text-gray-300">
           <Spinner className="size-10" />
         </div>
       )}
       {jobs && jobs.length > 0 && <div className="h-20" id="observer" ref={observerRef}></div>}
       {!loading && jobs.length === 0 && (
         <div className="w-full text-center">
-          <h3>No Jobs Found</h3>
+          <h3 className="text-gray-700 dark:text-gray-300">No Jobs Found</h3>
         </div>
       )}
     </div>
