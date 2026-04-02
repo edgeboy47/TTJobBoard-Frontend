@@ -42,12 +42,12 @@ const Header = () => {
         animate={{ opacity: 1 }}
         className='flex flex-row max-w-5xl p-6 w-full items-center justify-between'>
         <div className='flex flex-row gap-4'>
-          <h1 className='text-5xl font-semibold text-gray-900 dark:text-white'>TT Job Board  </h1>
-          <TT className='w-12 h-12' />
+          <h1 className='text-2xl md:text-5xl font-semibold text-gray-900 dark:text-white'>TT Job Board  </h1>
+          <TT className='w-8 h-8 md:w-12 md:h-12' />
         </div>
         <button
           onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-          className='p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center'>
+          className='p-2 hover:cursor-pointer rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center'>
           {resolvedTheme === 'dark' ? <Sun className='w-5 h-5 text-white' /> : <Moon className='w-5 h-5 text-gray-800' />}
         </button>
       </motion.div>
