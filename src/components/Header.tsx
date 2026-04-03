@@ -20,7 +20,7 @@ const Header = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className='flex flex-row max-w-5xl px-6 w-full items-center justify-between'>
+          className='flex flex-row max-w-5xl p-8 w-full items-center justify-between'>
           <div className='flex flex-row p-6 gap-4'>
             <h1 className='text-5xl font-semibold text-gray-900 dark:text-white'>TT Job Board  </h1>
             <TT className='w-12 h-12' />

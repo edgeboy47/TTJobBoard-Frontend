@@ -18,7 +18,7 @@ const AppState = () => {
   // TODO: move data fetching logic to SWR
   // Data fetching logic
   const fetchJobs = useCallback(
-    async ({ page, title, company }: SearchOptions & { page?: number }) => {
+    async ({ page, title, company, location }: SearchOptions & { page?: number }) => {
       setLoading(true)
       const params = new URLSearchParams();
       let url: string;
@@ -26,6 +26,7 @@ const AppState = () => {
       if (title) params.append("title", title);
       if (page) params.append("page", page.toString());
       if (company) params.append("company", company);
+      if (location) params.append("location", location)
 
       // TODO: check if object is empty or deep equal to {}
       if (params.toString()) url = `/api/jobs?${params.toString()}`;

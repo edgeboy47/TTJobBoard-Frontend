@@ -20,4 +20,5 @@ export type ApiResponse = {
 export type SearchOptions = {
   title?: string
   company?: string
+  location?: string
 }

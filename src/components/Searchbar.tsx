@@ -15,7 +15,7 @@ type SearchProps = {
 
 // Component that allows user to update the state used for search
 const SearchBar = ({ searchOptions, setSearchOptions, searching }: SearchProps) => {
-  const { title, company } = searchOptions;
+  const { title, company, location } = searchOptions;
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -58,6 +58,24 @@ const SearchBar = ({ searchOptions, setSearchOptions, searching }: SearchProps) 
                 setSearchOptions((prevOptions) => ({
                   ...prevOptions,
                   company: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className='flex flex-col gap-3 flex-1'>
+            <Label htmlFor="company" className="text-gray-900 dark:text-gray-100">Location</Label>
+            <Input
+              icon={<SearchIcon size={16} className='opacity-50' />}
+              className="py-1 rounded-md outline-none shadow bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500"
+              type="text"
+              name="location"
+              id="location"
+              placeholder="Location"
+              value={location ?? ""}
+              onChange={(e) =>
+                setSearchOptions((prevOptions) => ({
+                  ...prevOptions,
+                  location: e.target.value,
                 }))
               }
             />
