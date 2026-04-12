@@ -1,11 +1,19 @@
 export type Job = {
   title: string
   company: string
+  companyId: string
   url: string
   location?: string
   description: string
   createdAt: string
-  img?: string
+  logoUrl?: string
+  company_data: Company
+}
+
+export type Company = {
+  id: string
+  title: string
+  logoUrl?: string
 }
 
 export type ApiResponse = {

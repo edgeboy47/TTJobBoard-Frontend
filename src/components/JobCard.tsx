@@ -17,7 +17,7 @@ import { MapPin, Paperclip } from 'lucide-react';
 import { timestampToRelativeTime } from '@/lib/utils';
 
 const JobCard = (props: Job) => {
-  const { img, title, company, description, location, url, createdAt } = props;
+  const { company_data, title, company, description, location, url, createdAt } = props;
   const companyInitials = company.split(' ').slice(0, 2).map(a => a[0]).join('').toUpperCase()
   const dateString = timestampToRelativeTime(createdAt)
   const applyNow = 'Apply Now'
@@ -26,8 +26,12 @@ const JobCard = (props: Job) => {
     <Card className="flex flex-col md:flex-row max-w-[960px] focus-within:-translate-y-2 hover:-translate-y-2 transition-all duration-300 ease-in-out my-6 shadow rounded-md">
       <CardHeader className='mr-4'>
         {
-          img ?
-            <img src={img} alt={`${company} Logo`} className='min-w-16 min-h-16 max-w-16 max-h-16 rounded-md border-slate-300 dark:border-slate-600 border-2 object-contain' /> :
+          company_data?.logoUrl ?
+            <img
+              src={company_data?.logoUrl}
+              alt={`${company} Logo`}
+              className='min-w-16 min-h-16 max-w-16 max-h-16 rounded-md border-slate-300 dark:border-slate-600 border-2 object-contain'
+            /> :
             company ?
               <h2 className='text-2xl md:text-3xl font-medium rounded-md bg-slate-300 dark:bg-gray-600 min-w-16 min-h-16 max-w-16 max-h-16 text-center content-center text-gray-900 dark:text-white'>{companyInitials}</h2> :
               null
