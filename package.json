@@ -6,7 +6,8 @@
     "lint": "next lint --fix",
     "start": "next start -p 4000",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
@@ -44,6 +45,7 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-storybook": "^0.12.0",
     "globals": "^15.3.0",
+    "husky": "^9.1.7",
     "playwright": "^1.51.1",
     "postcss": "^8.5.3",
     "storybook": "^8.6.12",
