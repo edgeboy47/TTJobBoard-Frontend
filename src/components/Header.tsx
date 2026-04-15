@@ -4,7 +4,7 @@ import { TT } from "country-flag-icons/react/3x2";
 import { Moon, Sun } from "lucide-react";
 import * as motion from "motion/react-client";
 import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [mounted, setMounted] = useState(false);
@@ -29,6 +29,7 @@ const Header = () => {
             <TT className="w-12 h-12" />
           </div>
           <button
+            type="button"
             onClick={() =>
               theme === "dark" ? setTheme("light") : setTheme("dark")
             }
@@ -55,6 +56,7 @@ const Header = () => {
           <TT className="w-8 h-8 md:w-12 md:h-12" />
         </div>
         <button
+          type="button"
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           className="p-2 hover:cursor-pointer rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center"
         >
