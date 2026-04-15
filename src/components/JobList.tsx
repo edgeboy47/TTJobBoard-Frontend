@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import React from "react";
 import type { Job } from "../utils/types";
 import JobCard from "./JobCard";
 

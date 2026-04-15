@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function timestampToRelativeTime(timestamp: string): string {
   const date: Date = new Date(timestamp.replace(" ", "T"));
 
-  if (isNaN(date.getTime())) {
+  if (Number.isNaN(date.getTime())) {
     return "";
   }
 

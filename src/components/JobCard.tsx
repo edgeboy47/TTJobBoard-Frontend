@@ -1,6 +1,5 @@
 import { MapPin, Paperclip } from "lucide-react";
 import { motion } from "motion/react";
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -73,12 +72,10 @@ const JobCard = (props: Job) => {
             </span>
           )}
           {location && (
-            <>
-              <p className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                <MapPin size={16} className="opacity-70" />
-                {location}
-              </p>
-            </>
+            <p className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+              <MapPin size={16} className="opacity-70" />
+              {location}
+            </p>
           )}
         </div>
         <CardDescription className="mb-4">

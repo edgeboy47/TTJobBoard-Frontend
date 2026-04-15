@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  const url = `${process.env.API_URL! + "/jobs?" + params}`;
+  const url = `${process.env.API_URL!}/jobs?${params}`;
 
   console.log("fetching from url", url);
   const response = await fetch(url, {

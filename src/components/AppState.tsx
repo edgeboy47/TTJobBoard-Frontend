@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDebounce } from "../utils/hooks";
 import type { ApiResponse, Job, SearchOptions } from "../utils/types";
 import JobList from "./JobList";
@@ -50,7 +50,7 @@ const AppState = () => {
       setMeta(json.data.meta);
       setLoading(false);
     },
-    [setJobs, setMeta],
+    [],
   );
 
   // Ref for intersection observer div
