@@ -1,16 +1,16 @@
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
-  const params = request.nextUrl.searchParams
-  const url = `${process.env.API_URL! + '/jobs?' + params}`
+  const params = request.nextUrl.searchParams;
+  const url = `${process.env.API_URL! + "/jobs?" + params}`;
 
-  console.log('fetching from url', url)
+  console.log("fetching from url", url);
   const response = await fetch(url, {
-    cache: 'no-store',
+    cache: "no-store",
     headers: {
-      'x-api-key': process.env.API_KEY!,
-    }
+      "x-api-key": process.env.API_KEY!,
+    },
   });
 
   if (response.ok) {
@@ -21,13 +21,16 @@ export async function GET(request: NextRequest) {
       meta: json.meta,
     };
 
-    return Response.json({ data }, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store, no-cache',
-      }
-    });
+    return Response.json(
+      { data },
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store, no-cache",
+        },
+      },
+    );
   }
 
   const data = {

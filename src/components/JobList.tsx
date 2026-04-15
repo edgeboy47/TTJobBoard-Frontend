@@ -1,6 +1,6 @@
-import React from 'react'
-import { motion } from 'motion/react'
-import { Job } from "../utils/types";
+import { motion } from "motion/react";
+import React from "react";
+import type { Job } from "../utils/types";
 import JobCard from "./JobCard";
 
 type Props = {
@@ -12,14 +12,13 @@ const JobList = ({ jobs }: Props) => {
   // it currently doesnt work with the infinite scroll
   const listItem = {
     hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
-  }
+    show: { y: 0, opacity: 1 },
+  };
 
   return (
-    <motion.div
-    >
+    <motion.div>
       {jobs.map((job) => {
-        const key = `${job.url}-${job.title}`
+        const key = `${job.url}-${job.title}`;
 
         return (
           <motion.div
@@ -28,10 +27,9 @@ const JobList = ({ jobs }: Props) => {
             initial="hidden"
             animate="show"
           >
-
-            <JobCard  {...job} />
+            <JobCard {...job} />
           </motion.div>
-        )
+        );
       })}
     </motion.div>
   );

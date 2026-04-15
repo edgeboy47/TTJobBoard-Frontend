@@ -1,10 +1,10 @@
-import * as React from "react"
+import type * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface InputProps extends React.ComponentProps<"input"> {
-  icon?: React.ReactNode
-  iconPosition?: "left" | "right"
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
 }
 
 function Input({
@@ -24,11 +24,11 @@ function Input({
           "focus-visible:border-red-500 focus-visible:ring-red-500 focus-visible:ring-[1px]",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
           "bg-white dark:bg-gray-800 duration-300",
-          className
+          className,
         )}
         {...props}
       />
-    )
+    );
   }
 
   return (
@@ -42,21 +42,21 @@ function Input({
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
           "bg-white dark:bg-gray-800",
           iconPosition === "left" ? "pl-9 pr-3" : "pl-3 pr-9",
-          className
+          className,
         )}
         {...props}
       />
       <div
         className={cn(
           "absolute top-1/2 -translate-y-1/2 flex items-center justify-center text-muted-foreground pointer-events-none",
-          iconPosition === "left" ? "left-3" : "right-3"
+          iconPosition === "left" ? "left-3" : "right-3",
         )}
       >
         {icon}
       </div>
     </div>
-  )
+  );
 }
 
-export { Input }
-export type { InputProps }
+export type { InputProps };
+export { Input };

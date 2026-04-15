@@ -1,6 +1,6 @@
-import React, { useRef, useCallback, useEffect, useState } from "react";
-import { ApiResponse, Job, SearchOptions } from "../utils/types";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDebounce } from "../utils/hooks";
+import type { ApiResponse, Job, SearchOptions } from "../utils/types";
 import JobList from "./JobList";
 import SearchBar from "./Searchbar";
 import { Spinner } from "./ui/spinner";
@@ -10,7 +10,7 @@ const AppState = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [meta, setMeta] = useState<ApiResponse["meta"]>({});
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Debounce the user input for search, to reduce api calls
   const debouncedSearchOptions = useDebounce<SearchOptions>(searchOptions);
@@ -18,15 +18,20 @@ const AppState = () => {
   // TODO: move data fetching logic to SWR
   // Data fetching logic
   const fetchJobs = useCallback(
-    async ({ page, title, company, location }: SearchOptions & { page?: number }) => {
-      setLoading(true)
+    async ({
+      page,
+      title,
+      company,
+      location,
+    }: SearchOptions & { page?: number }) => {
+      setLoading(true);
       const params = new URLSearchParams();
       let url: string;
 
       if (title) params.append("title", title);
       if (page) params.append("page", page.toString());
       if (company) params.append("company", company);
-      if (location) params.append("location", location)
+      if (location) params.append("location", location);
 
       // TODO: check if object is empty or deep equal to {}
       if (params.toString()) url = `/api/jobs?${params.toString()}`;
@@ -43,7 +48,7 @@ const AppState = () => {
         setJobs(json.data.data);
       }
       setMeta(json.data.meta);
-      setLoading(false)
+      setLoading(false);
     },
     [setJobs, setMeta],
   );
@@ -74,7 +79,13 @@ const AppState = () => {
         });
       }
     },
-    [debouncedSearchOptions, fetchJobs, meta?.currentPage, meta?.totalPages, loading],
+    [
+      debouncedSearchOptions,
+      fetchJobs,
+      meta?.currentPage,
+      meta?.totalPages,
+      loading,
+    ],
   );
 
   // Setup intersection observer
@@ -107,7 +118,9 @@ const AppState = () => {
           <Spinner className="size-10" />
         </div>
       )}
-      {jobs && jobs.length > 0 && <div className="h-20" id="observer" ref={observerRef}></div>}
+      {jobs && jobs.length > 0 && (
+        <div className="h-20" id="observer" ref={observerRef}></div>
+      )}
       {!loading && jobs.length === 0 && (
         <div className="w-full text-center">
           <h3 className="text-gray-700 dark:text-gray-300">No Jobs Found</h3>

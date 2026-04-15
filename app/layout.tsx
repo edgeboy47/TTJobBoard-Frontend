@@ -1,15 +1,15 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from 'next-themes'
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import type React from "react";
 
 import Header from "../src/components/Header";
-import "../src/app/globals.css"
-import { SEO } from '../src/constants';
-import { Metadata } from 'next';
+import "../src/app/globals.css";
+import type { Metadata } from "next";
+import { SEO } from "../src/constants";
 
 const inter = Inter({
-  preload: false
-})
+  preload: false,
+});
 
 export const metadata: Metadata = {
   title: SEO.title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: SEO.description,
   },
   robots: SEO.robots,
-}
+};
 
 export default function RootLayout({
   children,
@@ -33,14 +33,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`min-h-screen flex overflow-y-scroll ${inter.className}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`min-h-screen flex overflow-y-scroll ${inter.className}`}
+      suppressHydrationWarning
+    >
       <body className="flex-1 flex">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="flex flex-col flex-1 bg-slate-100 dark:bg-slate-900">
             <Header />
-            <section className="flex-1">
-              {children}
-            </section>
+            <section className="flex-1">{children}</section>
           </main>
         </ThemeProvider>
       </body>
