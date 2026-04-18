@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 4000",
     "build": "next build",
-    "lint": "biome check",
+    "lint": "biome check --fix",
     "start": "next start -p 4000",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
