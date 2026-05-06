@@ -122,3 +122,44 @@ The app fetches job data from the backend API at `/api/jobs`. You can filter by:
 - `company` - Company name
 - `location` - Job location
 - `page` - Pagination page number
+
+## Sitemap & SEO
+
+### Sitemap Configuration
+
+This project uses Next.js 15+ automatic sitemap generation. The sitemap is located at `app/sitemap.ts` and is automatically served at `/sitemap.xml`.
+
+**To update the sitemap:**
+
+1. Edit `app/sitemap.ts` to add routes
+2. Add your domain to `.env.local`:
+
+   ```
+   NEXT_PUBLIC_SITE_URL=https://your-domain.com
+   ```
+
+3. Rebuild: `npm run build`
+
+**Example routes to add:**
+
+```typescript
+const routes = [
+  {
+    url: generateRoute(''),
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 1.0,
+  },
+  {
+    url: generateRoute('about'),
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  },
+  // Add more routes here
+]
+```
+
+### Robots.txt
+
+The `public/robots.txt` file tells search engines where to find the sitemap and which paths to avoid (like API routes).
