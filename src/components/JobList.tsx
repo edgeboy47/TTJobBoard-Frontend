@@ -17,7 +17,7 @@ const JobList = ({ jobs }: Props) => {
   return (
     <motion.div>
       {jobs.map((job) => {
-        const key = `${job.url}-${job.title}`;
+        const key = `${job.url}-${job.title}-${job.company}`;
 
         return (
           <motion.div
