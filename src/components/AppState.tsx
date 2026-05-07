@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDebounce } from "../utils/hooks";
 import type { ApiResponse, Job, SearchOptions } from "../utils/types";
 import JobList from "./JobList";
@@ -9,8 +10,37 @@ import { Spinner } from "./ui/spinner";
 const AppState = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [meta, setMeta] = useState<ApiResponse["meta"]>({});
-  const [searchOptions, setSearchOptions] = useState<SearchOptions>({});
   const [loading, setLoading] = useState<boolean>(true);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const searchOptions: SearchOptions = useMemo(
+    () => ({
+      title: searchParams.get("title") || undefined,
+      company: searchParams.get("company") || undefined,
+      location: searchParams.get("location") || undefined,
+    }),
+    [searchParams],
+  );
+
+  const setSearchOptions = useCallback(
+    (options: SearchOptions) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (options.title) params.set("title", options.title);
+      else params.delete("title");
+      if (options.company) params.set("company", options.company);
+      else params.delete("company");
+      if (options.location) params.set("location", options.location);
+      else params.delete("location");
+
+      router.replace(`${pathname}${params ? `?${params.toString()}` : ""}`, {
+        scroll: false,
+      });
+    },
+    [searchParams, router, pathname],
+  );
 
   // Debounce the user input for search, to reduce api calls
   const debouncedSearchOptions = useDebounce<SearchOptions>(searchOptions);

@@ -1,6 +1,6 @@
 import { SearchIcon } from "lucide-react";
 import { motion } from "motion/react";
-import type React from "react";
+import { useEffect, useState } from "react";
 import type { SearchOptions } from "../utils/types";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
@@ -9,17 +9,28 @@ import { Spinner } from "./ui/spinner";
 
 type SearchProps = {
   searchOptions: SearchOptions;
-  setSearchOptions: React.Dispatch<React.SetStateAction<SearchOptions>>;
+  setSearchOptions: (options: SearchOptions) => void;
   searching: boolean;
 };
 
-// Component that allows user to update the state used for search
 const SearchBar = ({
   searchOptions,
   setSearchOptions,
   searching,
 }: SearchProps) => {
-  const { title, company, location } = searchOptions;
+  const [localOptions, setLocalOptions] =
+    useState<SearchOptions>(searchOptions);
+
+  useEffect(() => {
+    setLocalOptions(searchOptions);
+  }, [searchOptions]);
+
+  const handleChange = (field: keyof SearchOptions, value: string) => {
+    const opts = { ...localOptions, [field]: value };
+    setLocalOptions(opts);
+    setSearchOptions(opts);
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
       <Card className="bg-white dark:bg-gray-800 relative rounded-md p-8 shadow-md my-6 transition-colors duration-300">
@@ -36,13 +47,8 @@ const SearchBar = ({
               name="title"
               id="title"
               placeholder="Job Title"
-              value={title ?? ""}
-              onChange={(e) =>
-                setSearchOptions((prevOptions) => ({
-                  ...prevOptions,
-                  title: e.target.value,
-                }))
-              }
+              value={localOptions.title ?? ""}
+              onChange={(e) => handleChange("title", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-3 flex-1">
@@ -59,18 +65,13 @@ const SearchBar = ({
               name="company"
               id="company"
               placeholder="Company"
-              value={company ?? ""}
-              onChange={(e) =>
-                setSearchOptions((prevOptions) => ({
-                  ...prevOptions,
-                  company: e.target.value,
-                }))
-              }
+              value={localOptions.company ?? ""}
+              onChange={(e) => handleChange("company", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-3 flex-1">
             <Label
-              htmlFor="company"
+              htmlFor="location"
               className="text-gray-900 dark:text-gray-100"
             >
               Location
@@ -82,13 +83,8 @@ const SearchBar = ({
               name="location"
               id="location"
               placeholder="Location"
-              value={location ?? ""}
-              onChange={(e) =>
-                setSearchOptions((prevOptions) => ({
-                  ...prevOptions,
-                  location: e.target.value,
-                }))
-              }
+              value={localOptions.location ?? ""}
+              onChange={(e) => handleChange("location", e.target.value)}
             />
           </div>
         </CardContent>
